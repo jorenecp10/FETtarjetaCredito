@@ -13,15 +13,15 @@ export class TarjetaCreditoComponent implements OnInit {
 
   listTarjetas:any[]=[
     {
-      titulo:"Jose Correa",
+      titular:"Jose Correa",
       numeroTarjeta:212312332132231,
-      fechaExpedicion: '11/12',
+      fechaExpiracion: '11/12',
       cvv:123
     },
     {
-      titulo:"Ana correa",
+      titular:"Ana correa",
       numeroTarjeta:2123123321443331,
-      fechaExpedicion: '11/10',
+      fechaExpiracion: '11/10',
       cvv:549
     },
   ];
@@ -29,21 +29,31 @@ export class TarjetaCreditoComponent implements OnInit {
 
   form:FormGroup;
 
-  constructor(private fb:FormBuilder){
+  constructor(private fb: FormBuilder){
        this.form = this.fb.group({
         titular:[''],
         numeroTarjeta:[''],
         fechaExpiracion:[''],
         ccv:['']
        })
-
-
-  }
+      }
   ngOnInit(): void {
 
   }
   agregarTarjeta(){
-     console.log(this.form)
+
+
+     const tarjeta:any={
+      titular:this.form.get('titular')?.value,
+      numeroTarjeta:this.form.get('numeroTarjeta')?.value,
+      fechaExpiracion:this.form.get('fechaExpiracion')?.value,
+      ccv:this.form.get('ccv')?.value
+     }
+    //  this.listTarjetas.push(tarjeta)
+    //  this.form.reset()
+    console.log(tarjeta);
+    this.listTarjetas.push(tarjeta);
+
   }
 
 

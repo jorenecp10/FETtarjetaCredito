@@ -13,7 +13,7 @@
         <div class="card">
           <div class="card-body">
               <h5 class="titulo">AGREGAR TARJETA</h5>
-              <form [formGroup]="form">
+              <form [formGroup]="form" (ngSubmit)="agregarTarjeta()">
                 <div class="input-group input-group-lg mb-3">
                   <span class="input-group-text">
                     <i class="fa-solid fa-user"></i>
@@ -47,7 +47,7 @@
 
                 </div>
                 <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-success btn-lg">Aceptar</button>
+                <button  type="submit" class="btn btn-success btn-lg">Aceptar</button>
                 </div>
               </form>
           </div>
@@ -62,9 +62,9 @@
               <table class="table">
                 <tbody>
                   <tr *ngFor="let tarjeta of listTarjetas">
-                    <td>{{tarjeta.titulo}}</td>
-                    <td>{{tarjeta.numero}}</td>
-                    <td>{{tarjeta.fechaExpedicion}}</td>
+                    <td>{{tarjeta.titular}}</td>
+                    <td>{{tarjeta.numeroTarjeta}}</td>
+                    <td>{{tarjeta.fechaExpiracion}}</td>
                     <td>
                       <i class="fa-regular fa-pen-to-square text-info"></i>
                     </td>
