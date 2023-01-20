@@ -55,6 +55,11 @@ export class TarjetaCreditoComponent implements OnInit {
 
   }
 
+  eliminarTarjeta(indice:number){
+          this.listTarjetas.splice(indice,1);
+          this.toastr.error('La tarjeta fue eliminada con exito','Tarjeta Eliminada')
+  }
+
 
 
 }
