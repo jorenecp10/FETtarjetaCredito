@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup,FormBuilder,NgForm } from '@angular/forms';
+import { FormGroup,FormBuilder,NgForm, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 
 
@@ -29,12 +30,12 @@ export class TarjetaCreditoComponent implements OnInit {
 
   form:FormGroup;
 
-  constructor(private fb: FormBuilder){
+  constructor(private fb: FormBuilder,private toastr:ToastrService){
        this.form = this.fb.group({
-        titular:[''],
-        numeroTarjeta:[''],
-        fechaExpiracion:[''],
-        ccv:['']
+        titular:['',Validators.required],
+        numeroTarjeta:['',[Validators.required,Validators.minLength(16),Validators.maxLength(16)]],
+        fechaExpiracion:['',[Validators.required,Validators.minLength(5),Validators.maxLength(16)]],
+        ccv:['',[Validators.required,Validators.maxLength(3),Validators.minLength(3)]]
        })
       }
   ngOnInit(): void {
@@ -42,17 +43,15 @@ export class TarjetaCreditoComponent implements OnInit {
   }
   agregarTarjeta(){
 
-
      const tarjeta:any={
       titular:this.form.get('titular')?.value,
       numeroTarjeta:this.form.get('numeroTarjeta')?.value,
       fechaExpiracion:this.form.get('fechaExpiracion')?.value,
       ccv:this.form.get('ccv')?.value
      }
-    //  this.listTarjetas.push(tarjeta)
-    //  this.form.reset()
-    console.log(tarjeta);
-    this.listTarjetas.push(tarjeta);
+    this.listTarjetas.push(tarjeta)
+    this.toastr.success('La tarjeta fue registrada con exito', 'Tarjeta Registrada!');
+    this.form.reset()
 
   }
 
